@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style>
+        div {
+            text-align: center;
+            /*            cursor: pointer;*/
+        }
+
+        #square {
+            background-color: green;
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+        }
+
+        #circle {
+            background-color: red;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="square"></div>
+    <div id="circle"></div>
+
+
+    <script>
+        const element1 = document.querySelector("div:nth-child(1)");
+        const element2 = document.querySelector("div:nth-child(2)");
+
+        document.addEventListener("DOMContentLoaded", start);
+
+        function start() {
+            element1.innerHTML = '<img src="http://mabe-kea.dk/E19/pics/frog.png">';
+            element2.innerHTML = '<img src="http://mabe-kea.dk/E19/pics/pig.png">';
+
+
+            element1.addEventListener("click", skift);
+            element2.addEventListener("click", stopSkift);
+
+            element1.style.cursor = "pointer";
+            element2.style.cursor = "pointer";
+
+
+        }
+
+        function skift() {
+
+            let firkantStart = element1.innerHTML;
+
+            element1.innerHTML = element2.innerHTML;
+            element2.innerHTML = firkantStart;
+        }
+
+        function stopSkift() {
+            element1.removeEventListener("click", skift);
+        }
+    </script>
+</body></html>
