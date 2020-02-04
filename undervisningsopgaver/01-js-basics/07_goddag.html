@@ -11,14 +11,20 @@
 <body>
 
     <script>
-        let = time = new Date().getHours()
-        let = hilsen;
-        if (time > 5) {
+        let time = new Date().getHours();
+        let hilsen;
+
+        if (time < 5) {
             hilsen = "godnat";
         } else if (time < 10) {
             hilsen = "godmorgen";
+        } else if (time < 18) {
+            hilsen = "goddag";
         } else {
             hilsen = "godaften";
         }
+
+
+        console.log(hilsen);
     </script>
 </body></html>

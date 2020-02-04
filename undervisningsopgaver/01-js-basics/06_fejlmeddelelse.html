@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+
+    <p>Hvad er bredden?</p>
+    <input type="number" id="width">
+
+
+    <p>Hvad er højden?</p>
+
+    <input type="number" id="length">
+    <button id="udregn">udregn</button>
+
+
+    <script>
+        document.querySelector("#udregn").addEventListener("click", ButtonClick);
+
+        function ButtonClick() {
+            let length = document.querySelector("#length").value;
+            let width = document.querySelector("#width").value;
+
+            if (isNaN) {
+                alert("DANGER DANGER KUN TAL MANNNN")
+            }
+
+            //            let area = length * width;
+            let resulatat = `arealet er ${area(length, width)}`;
+            console.log(resulatat);
+
+            function area(l, b) {
+                return (l * b);
+            }
+
+
+        }
+    </script>
+</body></html>
