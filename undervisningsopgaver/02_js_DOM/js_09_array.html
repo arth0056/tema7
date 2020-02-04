@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #display {
+            width: 40vw;
+            height: 84vw;
+            border: 1px solid darkred;
+            margin: 7vw;
+            padding: 1vw;
+            line-height: 1.47rem;
+        }
+
+        body {
+            color: darkred;
+            font-family: sans-serif;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="display">
+
+
+    </div>
+
+
+    <script>
+        let tracks = ["silver blue eyed sun", "waiting in vain", "96 f**kries", "pure water", "small axe", "same thing", "the money", "easy skanking", "free years later", "lifestyle"];
+
+        tracks.forEach(song => {
+            document.querySelector("#display").innerHTML += `<h1>${song}</h1> <br>`;
+
+            console.log(song);
+        })
+    </script>
+</body></html>
