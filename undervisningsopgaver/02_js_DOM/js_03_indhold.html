@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <style>
+        div {
+            text-align: center;
+        }
+
+        #square {
+            background-color: green;
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+        }
+
+        #circle {
+            background-color: red;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            line-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="square"></div>
+    <div id="circle"></div>
+
+
+    <script>
+        const element1 = document.querySelector("div:nth-child(1)");
+        const element2 = document.querySelector("div:nth-child(2)");
+
+        element1.innerHTML = '<img src="http://mabe-kea.dk/E19/pics/frog.png">';
+        element2.innerHTML = '<img src="http://mabe-kea.dk/E19/pics/pig.png">';
+    </script>
+</body></html>
