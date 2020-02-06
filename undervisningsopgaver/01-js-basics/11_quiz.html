@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            border: 2px solid darkred;
+            height: 4vw;
+            width: 20vw;
+            margin: 1vw;
+
+        }
+
+        button {
+            position: absolute;
+            margin: 1vw;
+            left: 14vw;
+        }
+
+        input {
+            position: relative;
+            padding: 1px;
+            top: 1vw;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="start_knap">
+
+        START
+    </button>
+
+    <div class="txt1">
+
+
+    </div>
+
+
+    <div class="svar">
+        <input type="text" id="input1">
+        <button id="knap1"> SVAR</button>
+    </div>
+
+    <button id="nxt">
+
+        NEXT
+    </button>
+
+
+
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", start);
+
+
+        function start() {
+
+            document.querySelector("#start_knap").addEventListener("click", quiz1)
+        }
+
+        function quiz1() {
+
+
+            document.querySelector(".txt1").textContent = "hvad er livet?";
+            document.querySelector("#knap1").addEventListener("click", svar1)
+        }
+
+        function svar1() {
+            let resultat = "godt";
+            let input1svar = document.querySelector("#input1").value;
+            console.log(input1svar);
+            if (resultat == input1svar) {
+                alert("RIGTIGT!");
+            } else {
+                alert("HMMM, NAH MIN VEN");
+            }
+            document.querySelector("#nxt").addEventListener("click", quiz2);
+        }
+
+
+        function quiz2() {
+            document.querySelector(".txt1").textContent = "hvem er du?";
+            document.querySelector("#knap1").addEventListener("click", svar2)
+        }
+
+        function svar2() {
+            let resultat = "gud";
+            let input1svar = document.querySelector("#input1").value;
+            console.log(input1svar);
+            if (resultat == input1svar) {
+                alert("RIGTIGT!");
+            } else {
+                alert("HMMM, NAH MIN VEN");
+            }
+            document.querySelector("#nxt").addEventListener("click", quiz3);
+        }
+    </script>
+</body></html>
+
+
