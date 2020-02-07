@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <article class="tik">
+
+    </article>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", startUp);
+        let dyr = [
+
+            {
+                "navn": "frø",
+                "type": "amfibie",
+                "billede": "http://mabe-kea.dk/E19/pics/frog.png",
+                "levested": "sump"
+            },
+
+            {
+                "navn": "gris",
+                "type": "pattedyr",
+                "billede": "http://mabe-kea.dk/E19/pics/pig.png",
+                "levested": "svinefarm"
+            },
+
+            {
+                "navn": "ræv",
+                "type": "pattedyr",
+                "billede": "http://mabe-kea.dk/E19/pics/fox.png",
+                "levested": "skov"
+            },
+
+            {
+                "navn": "sild",
+                "type": "fisk",
+                "billede": "http://mabe-kea.dk/E19/pics/sild.jpg",
+                "levested": "havet"
+            },
+
+            {
+                "navn": "krokodille",
+                "type": "krybdyr",
+                "billede": "http://mabe-kea.dk/E19/pics/kroko.jpg",
+                "levested": "sump"
+            }
+
+        ]
+
+
+        function startUp() {
+            const print = document.querySelector("article");
+
+            // const dyrInfo = `dyr:${dyr.navn}, type:${dyr.type}, levested:${dyr.levested}`
+            dyr.forEach(dyr => {
+                print.innerHTML += `<p>dyr:${dyr.navn}, type:${dyr.type}, levested:${dyr.levested}<p>`;
+            })
+
+
+
+
+
+        }
+    </script>
+</body></html>

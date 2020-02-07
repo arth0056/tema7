@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+    <style>
+        .data-container {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-gap: 10px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .tik {
+            padding: 20px;
+            border: 4px solid darkred;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        h3 {
+            font-size: 1.47rem;
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <section class="data-container"> </section>
+    <template>
+        <article class="tik">
+            <h3>frø</h3>
+            <img src="" alt="">
+            <p class="p1">hobby: </p>
+            <p class="p2">alder: </p>
+        </article>
+
+    </template>
+
+
+
+    <script>
+        let personer = [];
+        const googleData = "https://spreadsheets.google.com/feeds/list/1XWWbfWszD7f4jHqp51V_oT3pkHuR-ceEUw4YtrvK7F0/od6/public/values?alt=json";
+        document.addEventListener("DOMContentLoaded", startUp);
+
+
+
+
+
+
+        function startUp() {
+            hentData();
+
+        }
+
+        async function hentData() {
+            console.log("hej");
+            const response = await fetch(googleData);
+            console.log(response);
+            personer = await response.json();
+            console.log(personer);
+            visTing();
+        }
+
+
+        function visTing() {
+            console.log("VIS ting");
+            const container = document.querySelector(".data-container");
+            const dyrTemplate = document.querySelector("template");
+            console.log("VIS ting2");
+
+            personer.feed.entry.forEach(ting => {
+                console.log("hej");
+                let klon = dyrTemplate.cloneNode(true).content;
+                klon.querySelector("h3").textContent = ting.gsx$navn.$t;
+                klon.querySelector("img").src = ting.gsx$billede.$t;
+                klon.querySelector(".p1").textContent += ting.gsx$hobby.$t;
+                klon.querySelector(".p2").textContent += ting.gsx$alder.$t;
+                container.appendChild(klon);
+            });
+
+        }
+
+    </script>
+</body>
+
+</html>
