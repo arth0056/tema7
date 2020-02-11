@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+    <style>
+        h1 {
+            text-align: center;
+            margin: 4px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .valgt {
+            background-color: red;
+        }
+
+        button {
+            margin: 2px;
+            border-radius: 17%;
+            border-style: hidden;
+        }
+
+        .data-container {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(147px, 1fr));
+            grid-gap: 10px;
+            margin: 0 auto;
+        }
+
+        .tik {
+            padding: 20px;
+            border: 4px solid darkred;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+
+        img {
+            width: 14vw;
+            height: auto;
+            margin: 4px;
+        }
+
+        h3 {
+            font-size: 1rem;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Alle</h1>
+    <nav>
+        <button class="filter valgt" data-sex="alle">Alle</button>
+        <button class="filter" data-sex="m">Mænd</button>
+        <button class="filter" data-sex="k">Kvinder</button>
+        <button class="filter" data-sex="andet">Andet</button>
+    </nav>
+
+    <section class="data-container"> </section>
+    <template>
+        <article class="tik">
+            <h3>frø</h3>
+            <img src="" alt="">
+            <p class="p1">køn: </p>
+            <p class="p2">religion: </p>
+        </article>
+
+    </template>
+
+
+
+    <script>
+        let personer = [];
+        const googleData = "https://spreadsheets.google.com/feeds/list/1XWWbfWszD7f4jHqp51V_oT3pkHuR-ceEUw4YtrvK7F0/od6/public/values?alt=json";
+        let filter = "alle";
+        document.addEventListener("DOMContentLoaded", startUp);
+
+
+
+
+
+
+        function startUp() {
+            hentData();
+            knapper();
+
+        }
+
+        async function hentData() {
+            console.log("fuck u");
+            const response = await fetch(googleData);
+            console.log(response);
+            personer = await response.json();
+            console.log(personer);
+            visTing();
+
+        }
+
+        function knapper() {
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.addEventListener("click", filtering);
+            })
+        }
+
+        function filtering() {
+            filter = this.dataset.sex;
+            this.classList.add("valgt");
+            visTing();
+            document.querySelector("h1").textContent = this.textContent;
+        }
+
+
+        function visTing() {
+            console.log("VIS ting");
+
+            const container = document.querySelector(".data-container");
+            const dyrTemplate = document.querySelector("template");
+            console.log("VIS ting2");
+
+            container.innerHTML = "";
+
+            personer.feed.entry.forEach(ting => {
+
+                if (filter == "alle" || filter == ting.gsx$sex.$t) {
+
+                    console.log("hej");
+                    let klon = dyrTemplate.cloneNode(true).content;
+                    klon.querySelector("h3").textContent = ting.gsx$navn.$t;
+                    klon.querySelector("img").src = ting.gsx$billede.$t;
+                    klon.querySelector(".p1").textContent += ting.gsx$sex.$t;
+                    klon.querySelector(".p2").textContent += ting.gsx$religion.$t;
+                    container.appendChild(klon);
+                }
+            });
+
+        }
+    </script>
+</body></html>

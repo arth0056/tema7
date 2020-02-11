@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="">
+
+    <style>
+        .hide {
+            display: none;
+        }
+
+        #pop_up_tik {
+            margin: 2vw;
+            background-color: white;
+            width: 44vw;
+            height: 37vw;
+            left: 25%;
+            position: relative;
+        }
+
+        #pop_up {
+            background-color: rgba(0, 0, 0, 0.65);
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            /*            display: flex;*/
+
+        }
+
+        h1 {
+            text-align: center;
+            margin: 4px;
+        }
+
+        nav {
+
+
+            text-align: center;
+        }
+
+        .valgt {
+            background-color: #cc0808;
+        }
+
+        button {
+            margin: 7px;
+            border-radius: 17%;
+            border-style: hidden;
+        }
+
+        .data-container {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            grid-gap: 10px;
+            margin: 0 auto;
+        }
+
+        .tik {
+            padding: 1.4vw;
+            border: 1.47px solid darkred;
+            border-radius: 1%;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+
+        img {
+            width: 24vw;
+            object-position: 50% 0%;
+            height: 20vw;
+            object-fit: cover;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 1rem;
+
+        }
+
+        .alder_filter {}
+    </style>
+</head>
+
+<body>
+
+    <h1>Alle</h1>
+    <nav>
+        <button class="filter valgt" data-sex="alle">Alle</button>
+        <button class="filter" data-sex="m">Mænd</button>
+        <button class="filter" data-sex="k">Kvinder</button>
+        <button class="filter" data-sex="andet">Andet</button>
+
+        <div class="alder_filter_knapper">
+
+            <button class="alder_filter" data-alder="">under 25</button>
+            <button class="alder_filter" data-alder="">over 25</button>
+            <button class="alder_filter" data-alder="">under 50</button>
+            <button class="alder_filter" data-alder="">over 50</button>
+        </div>
+
+    </nav>
+
+    <section class="data-container"> </section>
+    <template>
+        <article class="tik">
+            <h3>frø</h3>
+            <p class="p1">køn: </p>
+            <p class="p2">alder: </p>
+            <img src="" alt="">
+        </article>
+
+    </template>
+
+    <section id="pop_up" class="hide">
+        <article id="pop_up_tik">
+            <button id="pop_up_button">X</button>
+            <h1>NAVN</h1>
+            <img src="" alt="">
+            <p>WHATEVER</p>
+        </article>
+    </section>
+
+
+
+    <script>
+        let personer = [];
+        const googleData = "https://spreadsheets.google.com/feeds/list/1XWWbfWszD7f4jHqp51V_oT3pkHuR-ceEUw4YtrvK7F0/od6/public/values?alt=json";
+        let filter = "alle";
+        document.addEventListener("DOMContentLoaded", startUp);
+        const detalje = document.querySelector("#pop_up");
+
+
+
+
+
+
+        function startUp() {
+            hentData();
+            knapper();
+
+
+        }
+
+        async function hentData() {
+            console.log("fuck u");
+            const response = await fetch(googleData);
+            console.log(response);
+            personer = await response.json();
+            console.log(personer);
+            visTing();
+
+        }
+
+        function knapper() {
+            document.querySelectorAll(".filter").forEach(elm_knap1 => {
+                elm_knap1.addEventListener("click", filtering);
+            })
+        }
+
+
+        function filtering() {
+            filter = this.dataset.sex;
+
+            document.querySelectorAll(".filter").forEach(elm => {
+                elm.classList.remove("valgt");
+            })
+
+            this.classList.add("valgt");
+            visTing();
+            document.querySelector("h1").textContent = this.textContent;
+        }
+
+
+
+        function visTing() {
+            console.log("VIS ting");
+
+            const container = document.querySelector(".data-container");
+            const dyrTemplate = document.querySelector("template");
+
+
+            container.innerHTML = "";
+
+            personer.feed.entry.forEach(ting => {
+
+                if (filter == "alle" || filter == ting.gsx$sex.$t) {
+
+                    console.log("hej");
+                    let klon = dyrTemplate.cloneNode(true).content;
+                    klon.querySelector("h3").textContent = ting.gsx$navn.$t;
+                    klon.querySelector("img").src = ting.gsx$billede.$t;
+                    klon.querySelector(".p1").textContent += ting.gsx$sex.$t;
+                    klon.querySelector(".p2").textContent += ting.gsx$alder.$t;
+                    klon.querySelector(".tik").addEventListener("click", function() {
+                        visPopUp(ting);
+                    });
+                    container.appendChild(klon);
+                }
+            });
+
+        }
+
+        function visPopUp(ting) {
+            detalje.classList.remove("hide");
+            detalje.querySelector("#pop_up_button").addEventListener("click", () => detalje.classList.add("hide"));
+            console.log(ting.gsx$navn.$t);
+        }
+    </script>
+</body></html>
