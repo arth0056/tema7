@@ -1,3 +1,8 @@
+.yeye_boi {
+    cursor: progress;
+}
+
+
 header {
     display: flex;
     justify-content: center;
@@ -14,21 +19,29 @@ header {
 h1 {
     text-align: center;
     margin: 0.4vw;
+    color: #333333;
+}
+
+.fuck_this_h1 {
     display: none;
 }
 
 h3 {
     font-size: 2.47rem;
+    color: #333333;
 }
 
 p {
     margin: 2vw 2vw 2vw 0;
+    color: #4d4d4d;
 
 }
 
 .p1 {
     margin-top: 1.6vw;
     font-size: 1.4rem;
+    font-style: italic;
+    color: #4d4d4d;
 }
 
 .p2 {
@@ -60,6 +73,8 @@ button {
     border-radius: 4%;
     border-style: hidden;
     font-size: 1.7rem;
+    cursor: pointer;
+    color: #333333;
 }
 
 .data-container {
@@ -75,12 +90,16 @@ button {
     padding: 1.4vw;
     border: hidden;
     border-radius: 1%;
+    cursor: pointer;
 }
 
 body {
     font-family: sans-serif;
 }
 
+#yeye_boi {
+    cursor: sw-resize;
+}
 
 img {
     /*
@@ -89,9 +108,97 @@ img {
     height: 20vw;
     object-fit: cover;
 */
-    width: 100%;
-    margin: 0;
+    border-radius: 2.47%;
+    width: 90%;
+    margin: ;
 }
+
+.hide {
+    display: none;
+}
+
+.pop_up_h1 {
+    font-size: 4.47vw;
+}
+
+#popup_image {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#popup_txt {
+    width: 74%;
+    position: relative;
+    left: 5.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#pop_up_tik {
+
+    overflow-y: scroll;
+    margin: 2vw;
+    background-color: white;
+    width: 55vw;
+    height: 88vh;
+    top: 4%;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 0.47%;
+    /*    display: flex;*/
+}
+
+#pop_up_tik p {
+    margin: 2vw;
+    font-size: 1.47vw;
+
+}
+
+
+#pop_up_tik img {
+    width: 74%;
+    object-fit: cover;
+    margin: 2vw;
+    height: 24vw;
+    border-radius: 2.47%;
+    /*    width: 66vw;*/
+}
+
+#pop_up_tik button {
+    position: fixed;
+    font-size: 2rem;
+    right: 23vw;
+    border-radius: 47%;
+    background-color: white;
+
+}
+
+#button_ting {
+    display: flex;
+    justify-content: flex-end;
+
+
+
+}
+
+#pop_up_tik h1 {
+    padding: 0.47vw;
+}
+
+#pop_up {
+    background-color: rgba(0, 0, 0, 0.65);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    /*            display: flex;*/
+
+}
+
 
 @media only screen and (max-width: 600px) {
 
@@ -103,4 +210,20 @@ img {
 
 
     }
+}
+
+
+@media only screen and (max-width: 947px) {
+
+    #pop_up_tik {
+
+        margin: 2vw;
+        height: 74vh;
+        background-color: white;
+        margin: 0 auto;
+        position: relative;
+    }
+
+
+
 }
