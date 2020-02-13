@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        html {
+            overflow: hidden;
+        }
+
+        .pop_up_h1 {
+            font-size: 4.47vw;
+            margin: 1vw;
+        }
+
+        #popup_image {
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        #popup_txt {
+            width: 74%;
+            position: relative;
+            left: 5.5vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        #pop_up_tik {
+
+            /*            overflow-y: scroll;*/
+            margin: 2vw;
+            background-color: #d9d9d9;
+            width: 100vw;
+            height: 100vh;
+            margin: 0 auto;
+            position: relative;
+            border-radius: 0.47%;
+
+        }
+
+        p {
+            margin: 2vw;
+            font-size: 1.47vw;
+
+        }
+
+
+        #pop_up_tik img {
+            width: auto;
+            object-fit: cover;
+            margin: 2vw;
+            height: 37vw;
+            border-radius: 2.47%;
+            /*    width: 66vw;*/
+        }
+
+        #pop_up_button {
+            position: fixed;
+            font-size: 4rem;
+            left: 2vw;
+            border-radius: 47%;
+            background-color: transparent;
+            border: none;
+
+
+        }
+
+        #button_ting {
+            display: flex;
+            justify-content: flex-end;
+
+
+
+        }
+
+        #pop_up_tik h1 {
+            /*            padding: 0.47vw;*/
+        }
+
+        #pop_up {
+            background-color: transparent;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .img_n_txt_wrapper {
+            display: flex;
+
+        }
+
+        .txt_dv_div {
+            top: 2vw;
+            position: relative;
+        }
+
+        #p2_d {
+            font-size: 2vw;
+        }
+
+        #p3_d {
+            text-decoration: underline;
+        }
+
+        #buy_button {
+            font-size: 3vw;
+            background-color: green;
+            border-radius: 7%;
+            border-color: green;
+            margin: 1vw;
+
+        }
+
+
+        @media only screen and (max-width: 600px) {
+            .img_n_txt_wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+
+
+            }
+
+            #p1_d {
+                font-size: 3vw;
+            }
+
+            #p2_d {
+                font-size: 4vw;
+            }
+
+            #p3_d {
+                font-size: 4vw;
+            }
+
+            #buy_button {
+                14vw;
+            }
+        }
+    </style>
+
+    <!--    <link rel="stylesheet" href="babushka.css">-->
+
+</head>
+
+<body>
+
+    <section id="pop_up" class="hide">
+        <article id="pop_up_tik">
+            <button id="pop_up_button">⇦</button>
+            <h1 class="pop_up_h1">NAVN</h1>
+            <div class="img_n_txt_wrapper">
+                <div class="img_dv_div">
+                    <img src="" alt="">
+                </div>
+                <div class="txt_dv_div">
+                    <p id="p1_d">WHATEVER</p>
+                    <p id="p2_d">WHATEVER</p>
+                    <p id="p3_d">WHATEVER</p>
+                    <button id="buy_button"> KØB </button>
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <script>
+        let personer = [];
+        const googleData = "https://spreadsheets.google.com/feeds/list/17Dd7DvkPaFamNUdUKlrFgnH6POvBJXac7qyiS6zNRw0/od6/public/values?alt=json";
+        let filter = "alle";
+        document.addEventListener("DOMContentLoaded", startUp);
+        const detalje = document.querySelector("#pop_up");
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+
+        function startUp() {
+            console.log("FUCK")
+            hentData();
+            backKnap();
+        }
+
+        async function hentData() {
+            console.log("fuck u");
+            const response = await fetch(googleData);
+            console.log(response);
+            personer = await response.json();
+            console.log(personer);
+            visTing();
+
+        }
+
+
+        function backKnap() {
+            document.querySelector("#pop_up_button").addEventListener("click", goBack)
+        }
+
+        function goBack() {
+            history.back();
+        }
+
+
+        function visTing() {
+            console.log("VIS ting");
+
+            const container = document.querySelector(".data-container");
+            const dyrTemplate = document.querySelector("template");
+
+
+            console.log("idtingshit");
+
+            personer.feed.entry.forEach(ting => {
+
+                if (ting.gsx$id.$t == id) {
+
+
+                    console.log("idtingshit");
+                    detalje.classList.remove("hide");
+                    detalje.querySelector("#pop_up_button").addEventListener("click", () => detalje.classList.add("hide"));
+                    console.log(ting.gsx$navn.$t);
+                    detalje.querySelector("h1").textContent = ting.gsx$navn.$t;
+                    detalje.querySelector("p").textContent = ting.gsx$kategori.$t;
+                    detalje.querySelector("p + p").textContent = ting.gsx$lang.$t;
+                    detalje.querySelector("p + p + p").textContent = ting.gsx$pris.$t + " kr.";
+
+                    detalje.querySelector("img").src = "pics/large/" + ting.gsx$billede.$t + ".jpg";
+                }
+            });
+
+        }
+    </script>
+
+
+</body></html>
